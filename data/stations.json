@@ -1,0 +1,52 @@
+[
+{
+"name": "Tesla Station",
+"lat": 12.9716,
+"lon": 77.5946,
+"type": "supercharger",
+"power": "350kW",
+"ports": 10,
+"parkingFee": 0.6,
+"price": 1.1
+},
+{
+"name": "Mahindra Electric Charging",
+"lat": 12.975,
+"lon": 77.599,
+"type": "supercharger",
+"power": "200kW",
+"ports": 4,
+"parkingFee": 0.2,
+"price": 0.12
+},
+{
+"name": "Aether Energy Station",
+"lat": 12.969,
+"lon": 77.59,
+"type": "Fast charger",
+"power": "250kW",
+"ports": 2,
+"parkingFee": 0.5,
+"price": 0.11
+},
+{
+"name": "Tata Power Station",
+"lat": 12.436,
+"lon": 77.585,
+"type": "Fast charger",
+"power": "150kW",
+"ports": 1,
+"parkingFee": 0.3,
+"price": 0.8
+},
+{
+"name": "Hyundai Charging Point",
+"lat": 12.97,
+"lon": 77.59,
+"type": "Fast charger",
+"power": "100kW",
+"ports": 2,
+"parkingFee": 0.3,
+"price": 0.11
+}
+]

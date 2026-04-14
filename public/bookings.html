@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Bookings</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background:#f4f6f9;
+            margin:0;
+            padding:40px;
+        }
+
+        h1{
+            text-align:center;
+            color:#2c3e50;
+            margin-bottom:30px;
+        }
+
+        .table-container{
+            max-width:900px;
+            margin:auto;
+            background:white;
+            padding:20px;
+            border-radius:10px;
+            box-shadow:0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        thead{
+            background:#27ae60;
+            color:white;
+        }
+
+        th, td{
+            padding:12px;
+            text-align:center;
+            border-bottom:1px solid #ddd;
+        }
+
+        tr:hover{
+            background:#f1f1f1;
+        }
+
+        th{
+            font-size:15px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>My Bookings</h1>
+
+<div class="table-container">
+
+<table>
+
+<thead>
+<tr>
+<th>Sl. No</th>
+<th>Station Name</th>
+<th>Type</th>
+<th>Date</th>
+<th>Time</th>
+</tr>
+</thead>
+
+<tbody id="bookingTable">
+</tbody>
+
+</table>
+
+</div>
+
+<script src="bookings.js"></script>
+
+</body>
+
+</html>

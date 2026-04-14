@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>EV Charging Finder</title>
+
+<link rel="stylesheet" href="style.css">
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<!-- Routing Machine CSS -->
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css"/>
+
+</head>
+
+<body>
+
+<div id="successMsg" class="success-msg">
+✅ Booking Confirmed
+</div>
+
+<div class="app-container">
+
+
+<!-- Booking Modal -->
+<div id="bookingModal" class="modal">
+
+<div class="modal-content">
+
+<h3>Book Charging Slot</h3>
+
+<p id="bookingStation"></p>
+
+<label>Select Date</label>
+<input type="date" id="bookingDate">
+
+<label>Select Time</label>
+<select id="bookingTime">
+<option>08:00 - 09:00</option>
+<option>09:00 - 10:00</option>
+<option>10:00 - 11:00</option>
+<option>11:00 - 12:00</option>
+<option>14:00 - 15:00</option>
+<option>18:00 - 19:00</option>
+</select>
+
+<div class="booking-buttons">
+<button onclick="confirmBooking()">Confirm</button>
+<button onclick="closeBooking()">Cancel</button>
+</div>
+
+</div>
+</div>
+
+
+<!-- 🔥 SUPPORT MODAL -->
+<div id="supportModal" class="modal">
+
+<div class="modal-content">
+
+<h3>Support Contacts</h3>
+
+<p><b>John Doe</b><br>📞 9876543210<br>📧 john@evsupport.com</p>
+<p><b>Priya Sharma</b><br>📞 9123456780<br>📧 priya@evsupport.com</p>
+<p><b>Rahul Verma</b><br>📞 9988776655<br>📧 rahul@evsupport.com</p>
+
+<div class="booking-buttons">
+<button onclick="closeSupport()">Close</button>
+</div>
+
+</div>
+</div>
+
+
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+<h2 class="logo">⚡ EV Finder</h2>
+
+<ul class="nav">
+
+<li class="active">Dashboard</li>
+<li>Stations</li>
+<li onclick="window.location.href='bookings.html'">Bookings</li>
+<li onclick="openSupport()">Support</li>
+
+</ul>
+
+</div>
+
+
+<!-- Main Dashboard -->
+
+<div class="main-content">
+
+<div class="dashboard">
+<h1 class="title">EV Charging Station Finder</h1>
+
+<div class="location-header">
+
+<div>
+<h3>Location</h3>
+<p id="userLocation">Detecting location...</p>
+</div>
+
+<div id="calendar"></div>
+
+</div>
+
+<!-- SEARCH BAR -->
+<div class="search-container">
+<input type="text" id="searchInput" placeholder="🔍 Search stations..." onkeyup="filterStations()">
+</div>
+
+<button id="nearestBtn" onclick="findNearestStation()">
+📍 Find Nearest Station
+</button>
+
+<div class="map-card">
+<div id="map"></div>
+
+<!-- Route Info -->
+<div id="routeInfo"></div>
+
+<button id="clearRouteBtn" onclick="clearRoute()" style="margin-top:10px;">
+❌ Clear Route
+</button>
+
+<h3>Stations List</h3>
+
+<div class="station-table">
+
+<div class="table-header">
+<div>Station Name</div>
+<div>Status</div>
+<div>Ports</div>
+<div>Parking Fee</div>
+<div>Per kWh</div>
+<div>Action</div>
+</div>
+
+<div id="stationList"></div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- Routing Machine JS -->
+<script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+
+<!-- Your script -->
+<script src="script.js"></script>
+
+</body>
+</html>

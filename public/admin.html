@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Add Charging Station</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>Add EV Charging Station</h1>
+
+<form id="stationForm">
+
+<label>Station Name</label>
+<input type="text" id="name" required><br><br>
+
+<label>Latitude</label>
+<input type="number" id="lat" step="any" required><br><br>
+
+<label>Longitude</label>
+<input type="number" id="lon" step="any" required><br><br>
+
+<label>Charger Type</label>
+<input type="text" id="type" required>
+
+<label>Charging Power</label>
+<input type="text" id="power" required>
+
+<label>Available Ports</label>
+<input type="number" id="ports" required>
+
+<button type="submit">Add Station</button>
+
+</form>
+
+<p id="message"></p>
+
+<script src="admin.js"></script>
+
+</body>
+</html>

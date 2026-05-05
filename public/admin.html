@@ -1,42 +1,44 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-<title>Add Charging Station</title>
+<title>Admin Dashboard</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1>Add EV Charging Station</h1>
+<div class="app-container">
 
-<form id="stationForm">
+<!-- Sidebar -->
+<div class="sidebar">
+<h2 class="logo">⚡ Admin Panel</h2>
 
-<label>Station Name</label>
-<input type="text" id="name" required><br><br>
+<p id="adminName" style="margin-bottom:20px;"></p>
 
-<label>Latitude</label>
-<input type="number" id="lat" step="any" required><br><br>
+<ul class="nav">
+<li class="active" onclick="showDashboard()">Dashboard</li>
+<li onclick="loadStations()">Manage Stations</li>
+<li onclick="loadBookings()">View Bookings</li>
+<li onclick="logout()">Logout</li>
+</ul>
+</div>
 
-<label>Longitude</label>
-<input type="number" id="lon" step="any" required><br><br>
+<!-- Main -->
+<div class="main-content">
+<div class="dashboard">
 
-<label>Charger Type</label>
-<input type="text" id="type" required>
+<h1 class="title">Admin Dashboard</h1>
 
-<label>Charging Power</label>
-<input type="text" id="power" required>
+<div id="adminContent"></div>
 
-<label>Available Ports</label>
-<input type="number" id="ports" required>
+</div>
+</div>
 
-<button type="submit">Add Station</button>
-
-</form>
-
-<p id="message"></p>
+</div>
 
 <script src="admin.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </body>
 </html>

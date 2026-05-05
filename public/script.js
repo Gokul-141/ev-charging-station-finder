@@ -6,6 +6,22 @@ let userLat;
 let userLon;
 let selectedStation = "";
 
+
+const user = JSON.parse(localStorage.getItem("user"));
+
+if(!user){
+window.location.href = "login.html";
+}else if(user.role === "admin"){
+window.location.href = "admin.html";
+}else{
+
+const nameDisplay = document.getElementById("userNameDisplay");
+
+if(nameDisplay){
+nameDisplay.innerText = `👤 Welcome, ${user.name}`;
+}
+}
+
 // initialize map
 function initMap(){
 
@@ -139,7 +155,7 @@ container.appendChild(row);
 // booking popup
 function openBooking(stationName){
 
-selectedStation = stationName;
+selectedStation = stationList.find(s => s.name === stationName);
 
 document.getElementById("bookingStation").innerText =
 "Station: " + stationName;
@@ -171,7 +187,10 @@ function confirmBooking(){
 const date = document.getElementById("bookingDate").value;
 const time = document.getElementById("bookingTime").value;
 
-const station = stationList.find(s => s.name === selectedStation);
+if(!date || !time){
+alert("Please select date and time");
+return;
+}
 
 fetch("/api/bookings",{
 
@@ -179,24 +198,24 @@ method:"POST",
 headers:{"Content-Type":"application/json"},
 
 body: JSON.stringify({
-station: selectedStation,
-type: station.type,
-date: date,
-time: time
+  station: selectedStation.name,
+  type: selectedStation.type || "Standard",
+  date: date,
+  time: time,
+  price: selectedStation.price || 0
 })
 
 })
 .then(res=>res.json())
 .then(()=>{
-// show success message
-const msg = document.getElementById("successMsg");
 
+const msg = document.getElementById("successMsg");
 msg.classList.add("show");
 
-// hide after 3 seconds
 setTimeout(() => {
 msg.classList.remove("show");
 }, 3000);
+
 closeBooking();
 });
 }
@@ -344,4 +363,44 @@ Math.sin(dLon/2);
 const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 
 return R * c;
+}
+
+function logout(){
+localStorage.removeItem("user");
+window.location.href = "login.html";
+}
+
+function calculateRange(){
+
+const capacity = parseFloat(document.getElementById("batteryCapacity").value);
+const percent = parseFloat(document.getElementById("batteryPercent").value);
+const efficiency = parseFloat(document.getElementById("efficiency").value);
+
+if(!capacity || !percent || !efficiency){
+document.getElementById("rangeResult").innerText = "Enter all values";
+return;
+}
+
+const range = capacity * (percent/100) * efficiency;
+
+document.getElementById("rangeResult").innerText =
+`Estimated Range: ${range.toFixed(2)} km`;
+}
+
+
+function calculateCost(){
+
+const capacity = parseFloat(document.getElementById("costCapacity").value);
+const percent = parseFloat(document.getElementById("chargePercent").value);
+const price = parseFloat(document.getElementById("pricePerKwh").value);
+
+if(!capacity || !percent || !price){
+document.getElementById("costResult").innerText = "Enter all values";
+return;
+}
+
+const cost = capacity * (percent/100) * price;
+
+document.getElementById("costResult").innerText =
+`Estimated Cost: $${cost.toFixed(2)}`;
 }

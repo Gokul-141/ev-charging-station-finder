@@ -10,9 +10,11 @@ app.use(express.static("public"));
 
 const stationRoutes = require("./routes/stations");
 const bookingsRoute = require("./routes/bookings");
+const userRoutes = require("./routes/users");
 
 app.use("/api/stations", stationRoutes);
 app.use("/api/bookings", bookingsRoute);
+app.use("/api/users", userRoutes);
 
 
 // temporary bookings API (demo data)

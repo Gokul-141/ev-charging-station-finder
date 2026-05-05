@@ -18,16 +18,15 @@ href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-mach
 
 <body>
 
+<!-- Success Message -->
 <div id="successMsg" class="success-msg">
 ✅ Booking Confirmed
 </div>
 
 <div class="app-container">
 
-
 <!-- Booking Modal -->
 <div id="bookingModal" class="modal">
-
 <div class="modal-content">
 
 <h3>Book Charging Slot</h3>
@@ -55,10 +54,8 @@ href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-mach
 </div>
 </div>
 
-
-<!-- 🔥 SUPPORT MODAL -->
+<!-- Support Modal -->
 <div id="supportModal" class="modal">
-
 <div class="modal-content">
 
 <h3>Support Contacts</h3>
@@ -74,32 +71,32 @@ href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-mach
 </div>
 </div>
 
-
 <!-- Sidebar -->
-
 <div class="sidebar">
 
 <h2 class="logo">⚡ EV Finder</h2>
 
-<ul class="nav">
+<!-- User Name -->
+<p id="userNameDisplay" style="margin-bottom:20px; font-weight:600;"></p>
 
+<ul class="nav">
 <li class="active">Dashboard</li>
 <li>Stations</li>
 <li onclick="window.location.href='bookings.html'">Bookings</li>
 <li onclick="openSupport()">Support</li>
-
+<li onclick="logout()">Logout</li>
 </ul>
 
 </div>
 
-
-<!-- Main Dashboard -->
-
+<!-- Main Content -->
 <div class="main-content">
 
 <div class="dashboard">
+
 <h1 class="title">EV Charging Station Finder</h1>
 
+<!-- Location -->
 <div class="location-header">
 
 <div>
@@ -111,25 +108,66 @@ href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-mach
 
 </div>
 
-<!-- SEARCH BAR -->
+<!-- Search -->
 <div class="search-container">
-<input type="text" id="searchInput" placeholder="🔍 Search stations..." onkeyup="filterStations()">
+<input type="text" id="searchInput"
+placeholder="🔍 Search stations by name..."
+onkeyup="filterStations()">
 </div>
 
+<!-- Nearest Button -->
 <button id="nearestBtn" onclick="findNearestStation()">
 📍 Find Nearest Station
 </button>
 
+<!-- Map Section -->
 <div class="map-card">
+
 <div id="map"></div>
 
-<!-- Route Info -->
 <div id="routeInfo"></div>
+
 
 <button id="clearRouteBtn" onclick="clearRoute()" style="margin-top:10px;">
 ❌ Clear Route
 </button>
 
+</div>
+
+<!-- 🔋 SMART TOOLS -->
+<h3>⚡ Smart Tools</h3>
+
+<div class="tools-container">
+
+<!-- Range Predictor -->
+<div class="tool-card">
+<h4>🔋 Battery Range Prediction</h4>
+
+<input id="batteryCapacity" placeholder="Battery Capacity (kWh)">
+<input id="batteryPercent" placeholder="Current Battery (%)">
+<input id="efficiency" placeholder="Efficiency (km/kWh)">
+
+<button onclick="calculateRange()">Calculate Range</button>
+
+<p id="rangeResult"></p>
+</div>
+
+<!-- Cost Estimator -->
+<div class="tool-card">
+<h4>💰 Charging Cost Estimator</h4>
+
+<input id="costCapacity" placeholder="Battery Capacity (kWh)">
+<input id="chargePercent" placeholder="Charge Needed (%)">
+<input id="pricePerKwh" placeholder="Price per kWh">
+
+<button onclick="calculateCost()">Estimate Cost</button>
+
+<p id="costResult"></p>
+</div>
+
+</div>
+
+<!-- Stations List -->
 <h3>Stations List</h3>
 
 <div class="station-table">
@@ -148,9 +186,7 @@ href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-mach
 </div>
 
 </div>
-
 </div>
-
 </div>
 
 <!-- Leaflet JS -->
@@ -159,7 +195,7 @@ href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-mach
 <!-- Routing Machine JS -->
 <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
 
-<!-- Your script -->
+<!-- Main Script -->
 <script src="script.js"></script>
 
 </body>

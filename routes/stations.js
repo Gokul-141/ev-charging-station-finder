@@ -1,27 +1,35 @@
 const express = require("express");
+const fs = require("fs");
 const router = express.Router();
 
-let stations = require("../data/stations.json");
+const file = "./data/stations.json";
 
-// get all stations
+// GET
 router.get("/", (req,res)=>{
-
-res.json(stations);
-
+const data = JSON.parse(fs.readFileSync(file));
+res.json(data);
 });
 
-
-// add new charging station
+// POST
 router.post("/", (req,res)=>{
+const data = JSON.parse(fs.readFileSync(file));
 
-const station = req.body;
+data.push(req.body);
 
-stations.push(station);
+fs.writeFileSync(file, JSON.stringify(data,null,2));
 
-res.json({
-message:"Charging station added successfully"
+res.json({message:"Station added"});
 });
 
+// DELETE
+router.delete("/:index",(req,res)=>{
+const data = JSON.parse(fs.readFileSync(file));
+
+data.splice(req.params.index,1);
+
+fs.writeFileSync(file, JSON.stringify(data,null,2));
+
+res.json({message:"Deleted"});
 });
 
 module.exports = router;
